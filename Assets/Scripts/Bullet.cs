@@ -10,11 +10,7 @@ public class Bullet : MonoBehaviour
     public int damage; // урон
     public LayerMask whatIsSolid; // задаёт слои для пробития
     public GameObject destroyEffect;
-    private void Start ()
-    {
-        Destroy (gameObject, lifetime);
-    }
-
+   
     private void Update ()
     {
         // найти объект для пробития
