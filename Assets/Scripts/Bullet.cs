@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public GameObject destroyEffect;
     private void Start ()
     {
-        Destroy (gameObject, lifetime); // уничтожаем пулю
+        Destroy (gameObject, lifetime);
     }
 
     private void Update ()
@@ -20,13 +20,12 @@ public class Bullet : MonoBehaviour
         // найти объект для пробития
         RaycastHit2D hitInfo = Physics2D.Raycast (transform.position, transform.up, distance, whatIsSolid);
         // если пуля столкнулась с каким-нибудь коллайдером и у него тег "Эними" (наш враг), 
-        // то мы наносим этому врагу урон 
+        // то мы наносим этому врагу урон и уничтожаем пулю
        
             if (hitInfo.collider != null && hitInfo.collider.CompareTag ("Enemy"))
             {
                 hitInfo.collider.GetComponent<Enemy> ().TakeDamage (damage);
             }
-        
         // движение патрона
         transform.Translate (Vector2.up * speed * Time.deltaTime);
     }
