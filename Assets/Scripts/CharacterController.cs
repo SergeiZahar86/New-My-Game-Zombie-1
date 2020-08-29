@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-       
+    public int health;
     public float moveSpeed;
     public Rigidbody2D rb;
     private Vector2 moveDirection;
    
-
-
     void Update ()
     {
         ProcessInputs ();
@@ -28,6 +26,11 @@ public class CharacterController : MonoBehaviour
     {
         rb.velocity = new Vector2 (moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
        
+    }
+    // функция изменения здоровья
+    public void ChangeHealth(int healthValue)
+    {
+        health += healthValue;
     }
 
 }
