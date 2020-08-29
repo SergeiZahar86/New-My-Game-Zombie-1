@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public GameObject destroyEffect;
     private void Start ()
     {
-        Invoke ("DestroyBullet", lifetime);
+        Destroy (gameObject, lifetime);
     }
 
     private void Update ()
@@ -27,16 +27,12 @@ public class Bullet : MonoBehaviour
             {
                 hitInfo.collider.GetComponent<Enemy> ().TakeDamage (damage);
             }
-            DestroyBullet ();
+           
 
         }
         // движение патрона
         transform.Translate (Vector2.up * speed * Time.deltaTime);
     }
-    public void DestroyBullet ()
-    {
-        Instantiate (destroyEffect, transform.position, Quaternion.identity);
-        Destroy (gameObject);
-    }
+  
 
 }
