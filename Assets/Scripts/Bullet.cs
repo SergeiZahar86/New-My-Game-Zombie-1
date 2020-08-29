@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
             {
                 hitInfo.collider.GetComponent<Enemy> ().TakeDamage (damage);
             }
-        // движение патрона
+        // направление полёта
         transform.Translate (Vector2.right * speed * Time.deltaTime);
     }
   
