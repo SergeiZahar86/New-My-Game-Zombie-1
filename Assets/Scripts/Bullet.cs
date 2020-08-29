@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float offset; // величина для корректировки вращения рук
     public float speed; // скорость пули
     public float lifetime; // время жизни пули
     public float distance; // расстояние полёта пули
@@ -13,10 +12,6 @@ public class Bullet : MonoBehaviour
 
     private void Update ()
     {
-        //рассчитать положение курсора и повернуть в это направление оружие
-        Vector3 difference = Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position;
-        float rotZ = Mathf.Atan2 (difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler (0f, 0f, rotZ + offset);
         // найти объект для пробития
         RaycastHit2D hitInfo = Physics2D.Raycast (transform.position, transform.up, distance, whatIsSolid);
         // если пуля столкнулась с каким-нибудь коллайдером и у него тег "Эними" (наш враг), 
