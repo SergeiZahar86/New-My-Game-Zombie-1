@@ -18,16 +18,16 @@ public class Bullet : MonoBehaviour
     private void Update ()
     {
         // найти объект для пробития
-        RaycastHit2D hitInfo = Physics2D.Raycast (transform.position, transform.up, distance, whatIsSolid);
+        RaycastHit2D hitInfo = Physics2D.Raycast (transform.position, transform.right, distance, whatIsSolid);
         // если пуля столкнулась с каким-нибудь коллайдером и у него тег "Эними" (наш враг), 
-        // то мы наносим этому врагу урон и уничтожаем пулю
+        // то мы наносим этому врагу урон
        
             if (hitInfo.collider != null && hitInfo.collider.CompareTag ("Enemy"))
             {
                 hitInfo.collider.GetComponent<Enemy> ().TakeDamage (damage);
             }
         // движение патрона
-        transform.Translate (Vector2.up * speed * Time.deltaTime);
+        transform.Translate (Vector2.right * speed * Time.deltaTime);
     }
   
 
