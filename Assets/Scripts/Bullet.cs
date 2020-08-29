@@ -9,6 +9,11 @@ public class Bullet : MonoBehaviour
     public float distance; // расстояние полёта пули
     public int damage; // урон
     public LayerMask whatIsSolid; // задаёт слои для пробития
+    public GameObject destroyEffect;
+    private void Start ()
+    {
+        Invoke ("DestroyBullet", lifetime);
+    }
 
     private void Update ()
     {
@@ -20,13 +25,18 @@ public class Bullet : MonoBehaviour
         {
             if (hitInfo.collider.CompareTag ("Enemy"))
             {
-               // hitInfo.collider.GetComponent<Enemy> ().TakeDamage (damage);
+                hitInfo.collider.GetComponent<Enemy> ().TakeDamage (damage);
             }
-            Destroy (gameObject);
+            DestroyBullet ();
 
         }
         // движение патрона
         transform.Translate (Vector2.up * speed * Time.deltaTime);
+    }
+    public void DestroyBullet ()
+    {
+        Instantiate (destroyEffect, transform.position, Quaternion.identity);
+        Destroy (gameObject);
     }
 
 }
