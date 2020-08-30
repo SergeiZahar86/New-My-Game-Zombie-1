@@ -7,7 +7,7 @@ public class CharacterController : MonoBehaviour
     public int health;
     public float moveSpeed;
     public Rigidbody2D rb;
-    private Vector2 moveDirection;
+    private Vector2 moveDirection;  // считывает в какую сторону мы движемся
    
     void Update ()
     {
