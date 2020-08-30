@@ -8,10 +8,22 @@ public class CharacterController : MonoBehaviour
     public float moveSpeed;
     public Rigidbody2D rb;
     private Vector2 moveDirection;  // считывает в какую сторону мы движемся
-   
+    private Animator anim;
+    private void Start ()
+    {
+        anim = GetComponent<Animator> ();
+    }
     void Update ()
     {
         ProcessInputs ();
+        if((moveDirection.x == 0) & (moveDirection.y == 0))
+        {
+            anim.SetBool ("isRunning", false);
+        }
+        else
+        {
+            anim.SetBool ("isRunning", true);
+        }
     }
     private void FixedUpdate ()
     {
