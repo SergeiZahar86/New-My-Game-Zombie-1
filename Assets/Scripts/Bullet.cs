@@ -5,11 +5,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed; // скорость пули
-    public float lifetime; // время жизни пули
     public float distance; // расстояние полёта пули
     public int damage; // урон
     public LayerMask whatIsSolid; // задаёт слои для пробития
-    public GameObject destroyEffect;
    
     private void Update ()
     {
