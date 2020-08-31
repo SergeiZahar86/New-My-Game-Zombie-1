@@ -4,33 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health;
     public float speed;
-    public float normalSpeed;
-    public int damage; 
-    private CharacterController character;
-    private Animator anim;
+    private Transform playerPos;
 
-    private void Start ()
+    private void Awake ()
     {
-        anim = GetComponent<Animator> ();
-        character = FindObjectOfType<CharacterController> ();
+        playerPos = GameObject.FindGameObjectWithTag ("Player").transform;
     }
     private void Update ()
     {
-        if(health <= 0)
-        {
-            Destroy (gameObject); // уничтожаем врага если не осталось здоровья
-        }
-        transform.Translate (Vector2.right * speed * Time.deltaTime);
-    }
-    public void TakeDamage(int damage)
-    {      
-        health -= damage;
-    }
-    public void OnEnemyAttack ()
-    {
-        character.ChangeHealth (-damage);
-       
+        transform.position = Vector2.MoveTowards (transform.position, playerPos.position,speed* Time.deltaTime);
     }
 }
