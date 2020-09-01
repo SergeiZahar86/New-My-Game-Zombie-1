@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2195815755338875824}
-  - component: {fileID: -7271320760770192966}
   - component: {fileID: 3734034674676879632}
+  - component: {fileID: -7271320760770192966}
   - component: {fileID: 4493835325141908739}
   m_Layer: 8
   m_Name: bullet
@@ -33,24 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7271320760770192966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7376781094937209307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bee081d391bcc44283e77bb0d771d1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  distance: 2
-  damage: 1
-  whatIsSolid:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!212 &3734034674676879632
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -102,6 +84,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7271320760770192966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376781094937209307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bee081d391bcc44283e77bb0d771d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  distance: 2
+  damage: 1
+  whatIsSolid:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &4493835325141908739
 MonoBehaviour:
   m_ObjectHideFlags: 0
