@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float speed;
+    private Transform playerPos;
+    bool FlagToTurn = true; // флаг для поворота
 
-    // Update is called once per frame
-    void Update()
+    private void Awake ()
     {
-        
+        playerPos = GameObject.FindGameObjectWithTag ("Player").transform;
+    }
+    private void Update ()
+    {
+        transform.position = Vector2.MoveTowards (transform.position, playerPos.position, speed * Time.deltaTime);
+        if (playerPos.position.x < transform.position.x && FlagToTurn)
+        {
+            Flip ();
+            FlagToTurn = false;
+        }
+        else if (playerPos.position.x > transform.position.x && !FlagToTurn)
+        {
+            Flip ();
+            FlagToTurn = true;
+        }
+    }
+    private void Flip ()
+    {
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 }
