@@ -13,7 +13,9 @@ public class Player : MonoBehaviour
         public Vector3 shootPosition;
         public Vector3 shellPosition;
     }
-
+    public Rigidbody2D rb;
+    public float moveSpeed;
+    private Vector2 moveDirection;  // считывает в какую сторону мы движемся
     private Transform handsTransform;
     private Transform legsTransform;
     private Transform headTransform;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     private Transform handsShellPositionTransform;
     private Transform handsGunEndPointTransform;
     private Animator handsAnimator;
+    private Animator runningAnimation;
 
     private void Awake () // Awake всегда вызывается перед любой функцией Start. Используйте Awake 
     //для инициализации переменных или состояний перед запуском приложения. Unity вызывает Awake 
@@ -31,17 +34,32 @@ public class Player : MonoBehaviour
         headTransform = transform.Find ("Head");
         legsTransform = transform.Find ("Legs");
         handsAnimator = handsTransform.GetComponent<Animator> ();
+        runningAnimation = GetComponent<Animator> ();
         handsGunEndPointTransform = handsTransform.Find ("GunEndPointPosition");
         handsShellPositionTransform = handsTransform.Find ("ShellPosition");
     }
     private void Update ()
     {
+        ProcessInputs ();
         HandleAiming ();
         HandleShooting ();
         ReversalOfFixedBodyParts (bodyTransform);
         ReversalOfFixedBodyParts (legsTransform);
+        RunningAnimation ();
     }
 
+    private void FixedUpdate ()
+    {
+        Move ();
+    }
+    void ProcessInputs ()
+    {
+        moveDirection = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized;
+    }
+    void Move ()
+    {
+        rb.velocity = new Vector2 (moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
     private void HandleAiming ()
     {
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition ();
@@ -64,6 +82,17 @@ public class Player : MonoBehaviour
         headTransform.localScale = handsLocalScale;
         ///////////////////////////////////////////////
 
+    }
+    void RunningAnimation ()
+    {
+        if ((moveDirection.x == 0) & (moveDirection.y == 0))
+        {
+            runningAnimation.SetBool ("isRunning", false);
+        }
+        else
+        {
+            runningAnimation.SetBool ("isRunning", true);
+        }
     }
     void ReversalOfFixedBodyParts (Transform bodyParts)
     {
