@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
        
             if (hitInfo.collider != null && hitInfo.collider.CompareTag ("Enemy"))
             {
-                hitInfo.collider.GetComponent<Enemy> ();
+                hitInfo.collider.GetComponent<EnemyBigZombie> ();
             }
         // направление полёта
         transform.Translate (Vector2.right * speed * Time.deltaTime);
