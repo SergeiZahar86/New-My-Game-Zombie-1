@@ -43,3 +43,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Zombie
+    uniqueID: 246577719
+    locked: 0

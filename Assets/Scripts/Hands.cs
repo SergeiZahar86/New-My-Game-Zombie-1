@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hands : MonoBehaviour
 {
     public float offset; // величина для корректировки вращения рук
-    public GameObject bullet; // создаём пулю
+    public GameObject Bullet; // создаём пулю
     public Transform shotPoint; // место откуда будет лететь пуля
     private float timeBtwShots;
     public float startTimeBtwShots; // время между выстрелами
@@ -21,7 +21,7 @@ public class Hands : MonoBehaviour
         {
             if (Input.GetMouseButton (0))
             {
-                Instantiate (bullet, shotPoint.position, transform.rotation);
+                Instantiate (Bullet, shotPoint.position, transform.rotation);
                 timeBtwShots = startTimeBtwShots;
             }
         } 
