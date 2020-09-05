@@ -16,13 +16,11 @@ public class Bullet : MonoBehaviour
         // если пуля столкнулась с каким-нибудь коллайдером и у него тег "Эними" (наш враг), 
         // то мы наносим этому врагу урон
        
-            if (hitInfo.collider != null && hitInfo.collider.CompareTag ("Enemy"))
-            {
-                hitInfo.collider.GetComponent<EnemyBigZombie> ();
-            }
+        if (hitInfo.collider != null && hitInfo.collider.CompareTag ("Enemy"))
+        {
+            hitInfo.collider.GetComponent<EnemyBigZombie> ();
+        }
         // направление полёта
         transform.Translate (Vector2.right * speed * Time.deltaTime);
     }
-  
-
 }

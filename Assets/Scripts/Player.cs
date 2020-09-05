@@ -6,24 +6,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public event EventHandler<OnShootEventArgs> OnShoot;
-    public class OnShootEventArgs : EventArgs
-    {
-        public Vector3 gunEndPointPosition;
-        public Vector3 shootPosition;
-        public Vector3 shellPosition;
-    }
     public Rigidbody2D rb;
     public float moveSpeed;
     private Vector2 moveDirection;  // считывает в какую сторону мы движемся
-    private Transform handsTransform;
-    private Transform legsTransform;
-    private Transform headTransform;
-    private Transform bodyTransform;
-    private Transform handsShellPositionTransform;
-    private Transform handsGunEndPointTransform;
-    private Animator handsAnimator;
-    private Animator runningAnimation;
+    private Transform handsTransform; // Transform для рук
+    private Transform legsTransform; // Transform для ног
+    private Transform headTransform; // Transform для головы
+    private Transform bodyTransform; // Transform для тела
+    private Animator handsAnimation; // анимация рук
+    private Animator runningAnimation; // анимация бега
+    //для стрельбы
+    public GameObject Bullet; // создаём пулю
+    public Transform shotPoint; // место откуда будет лететь пуля
+    private float timeBtwShots; // оставшееся время до выстрела
+    public float startTimeBtwShots; // время между выстрелами
 
     private void Awake () // Awake всегда вызывается перед любой функцией Start. Используйте Awake 
     //для инициализации переменных или состояний перед запуском приложения. Unity вызывает Awake 
@@ -33,43 +29,40 @@ public class Player : MonoBehaviour
         handsTransform = transform.Find ("Hands");
         headTransform = transform.Find ("Head");
         legsTransform = transform.Find ("Legs");
-        handsAnimator = handsTransform.GetComponent<Animator> ();
+        handsAnimation = handsTransform.GetComponent<Animator> ();
         runningAnimation = GetComponent<Animator> ();
-        handsGunEndPointTransform = handsTransform.Find ("GunEndPointPosition");
-        handsShellPositionTransform = handsTransform.Find ("ShellPosition");
     }
     private void Update ()
     {
-        ProcessInputs ();
-        HandleAiming ();
-        HandleShooting ();
-        ReversalOfFixedBodyParts (bodyTransform);
-        ReversalOfFixedBodyParts (legsTransform);
-        RunningAnimation ();
+        HandleAiming (); // метод слежения рук и головы за мышью
+        ReversalOfFixedBodyParts (bodyTransform); //разворот спрайта тела
+        ReversalOfFixedBodyParts (legsTransform); //разворот спрайта ног
+        RunningAnimation (); // анимация бега
+        HandsAnimation (); // анимация стрельбы
+        Shooting (); //стрельба префабами
     }
 
     private void FixedUpdate ()
     {
-        Move ();
+        Move (); // метод перемещение героя
     }
-    void ProcessInputs ()
+    private void Move () // метод перемещение героя
     {
-        moveDirection = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized;
-    }
-    void Move ()
-    {
+        moveDirection = new Vector2 (Input.GetAxisRaw ("Horizontal"), 
+            Input.GetAxisRaw ("Vertical")).normalized;
         rb.velocity = new Vector2 (moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
-    private void HandleAiming ()
+
+    private void HandleAiming () // метод слежения рук и головы за мышью
     {
-        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition ();
+        Vector3 mousePosition = GetMouseWorldPosition (Input.mousePosition, Camera.main);
 
         Vector3 handsDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2 (handsDirection.y, handsDirection.x) * Mathf.Rad2Deg;
         handsTransform.eulerAngles = new Vector3 (0, 0, angle);
         headTransform.eulerAngles = new Vector3 (0, 0, angle);
 
-        /////////Разворот спрайта //////////////////////
+        /////////Разворот спрайтов рук и головы вокруг оси y //////////
         Vector3 handsLocalScale = Vector3.one;
         if (angle > 90 || angle < -90)
         {
@@ -80,10 +73,35 @@ public class Player : MonoBehaviour
         }
         handsTransform.localScale = handsLocalScale;
         headTransform.localScale = handsLocalScale;
-        ///////////////////////////////////////////////
-
     }
-    void RunningAnimation ()
+    
+    private void Shooting () //стрельба префабами
+    {
+        if (timeBtwShots <= 0) // если оставшееся время до выстрела истекло
+        {
+            if (Input.GetMouseButton (0))
+            {
+                Instantiate (Bullet, shotPoint.position, handsTransform.rotation);
+                timeBtwShots = startTimeBtwShots;
+            }
+        }
+        else
+        {
+            timeBtwShots -= Time.deltaTime;
+        }
+    }
+    private void HandsAnimation () // анимация стрельбы
+    {
+        if (Input.GetMouseButton (0))
+        {
+            handsAnimation.SetBool ("Shoot", true);
+        }
+        else
+        {
+            handsAnimation.SetBool ("Shoot", false);
+        }
+    }
+    private void RunningAnimation () // анимация бега
     {
         if ((moveDirection.x == 0) & (moveDirection.y == 0))
         {
@@ -94,9 +112,10 @@ public class Player : MonoBehaviour
             runningAnimation.SetBool ("isRunning", true);
         }
     }
-    void ReversalOfFixedBodyParts (Transform bodyParts)
+
+    private void ReversalOfFixedBodyParts (Transform bodyParts) //разворот невращающихся частей тела
     {
-        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition ();
+        Vector3 mousePosition = GetMouseWorldPosition (Input.mousePosition, Camera.main);
 
         Vector3 handsDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2 (handsDirection.y, handsDirection.x) * Mathf.Rad2Deg;
@@ -112,60 +131,12 @@ public class Player : MonoBehaviour
         }
         bodyParts.localScale = bodyLocalScale;
     }
-
-    private void HandleShooting ()
+    private Vector3 GetMouseWorldPosition (Vector3 screenPosition, Camera worldCamera)
+    // метод определения положения курсора мыши в мировом пространстве
     {
-        if (Input.GetMouseButtonDown (0))
-        {
-            Vector3 mousePosition = UtilsClass.GetMouseWorldPosition ();
-
-            handsAnimator.SetBool ("Shoot", true);
-            OnShoot?.Invoke (this, new OnShootEventArgs
-            {
-                gunEndPointPosition = handsGunEndPointTransform.position,
-                shootPosition = mousePosition, shellPosition = handsShellPositionTransform.position
-            });
-        }
-        else
-        {
-            handsAnimator.SetBool ("Shoot", false);
-        }
-        
-        /*
-        if (Input.GetMouseButtonDown (0))
-        {
-            handsAnimator.SetBool ("Shoot", true);
-        }
-        else
-        {
-            handsAnimator.SetBool ("Shoot", false);
-
-        }*/
+        Vector3 worldPosition = worldCamera.ScreenToWorldPoint (screenPosition);
+        //return worldPosition;
+        worldPosition.z = 0f;
+        return worldPosition;
     }
-
-    public class UtilsClass
-    {
-        public static Vector3 GetMouseWorldPosition ()
-        {
-            Vector3 vec = GetMouseWorldPositionWith (Input.mousePosition, Camera.main);
-            vec.z = 0f;
-            return vec;
-        }
-        /*
-        public static Vector3 GetMouseWorldPositionWith ()
-        {
-            return GetMouseWorldPositionWith (Input.mousePosition, Camera.main);
-        }
-        public static Vector3 GetMouseWorldPositionWith (Camera worldCamera)
-        {
-            return GetMouseWorldPositionWith (Input.mousePosition, worldCamera);
-        }
-        */
-        public static Vector3 GetMouseWorldPositionWith (Vector3 screenPosition, Camera worldCamera)
-        {
-            Vector3 worldPosition = worldCamera.ScreenToWorldPoint (screenPosition);
-            return worldPosition;
-        }
-    }
-    
 }

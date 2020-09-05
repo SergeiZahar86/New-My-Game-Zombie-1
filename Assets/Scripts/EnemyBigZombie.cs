@@ -6,7 +6,7 @@ public class EnemyBigZombie : MonoBehaviour
 {
     public float speed;
     private Transform playerPos;
-    bool FlagToTurn = true; // флаг для поворота
+    private bool FlagToTurn = true; // флаг для поворота
 
     private void Awake ()
     {
@@ -19,13 +19,14 @@ public class EnemyBigZombie : MonoBehaviour
         {
             Flip ();
             FlagToTurn = false;
-        }else if(playerPos.position.x < transform.position.x && !FlagToTurn)
+        }
+        else if(playerPos.position.x < transform.position.x && !FlagToTurn)
         {
             Flip ();
             FlagToTurn = true;
         }
     }
-    private void Flip ()
+    private void Flip () // разворот спрайта по y
     {
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;

@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed;
     private Transform playerPos;
-    bool FlagToTurn = true; // флаг для поворота
+    private bool FlagToTurn = true; // флаг для поворота
 
     private void Awake ()
     {
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
             FlagToTurn = true;
         }
     }
-    private void Flip ()
+    private void Flip () // разворот спрайта по y
     {
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
