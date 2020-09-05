@@ -151,6 +151,7 @@ public class Player : MonoBehaviour
             vec.z = 0f;
             return vec;
         }
+        /*
         public static Vector3 GetMouseWorldPositionWith ()
         {
             return GetMouseWorldPositionWith (Input.mousePosition, Camera.main);
@@ -159,6 +160,7 @@ public class Player : MonoBehaviour
         {
             return GetMouseWorldPositionWith (Input.mousePosition, worldCamera);
         }
+        */
         public static Vector3 GetMouseWorldPositionWith (Vector3 screenPosition, Camera worldCamera)
         {
             Vector3 worldPosition = worldCamera.ScreenToWorldPoint (screenPosition);
