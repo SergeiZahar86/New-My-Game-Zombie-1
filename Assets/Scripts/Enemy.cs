@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     private Transform playerPos;
     private bool FlagToTurn = true; // флаг для поворота
+    public bool SpritePointingToTheRight; // true - если спрайт изначально направлен вправо
 
     private void Awake ()
     {
@@ -14,17 +15,36 @@ public class Enemy : MonoBehaviour
     }
     private void Update ()
     {
-        transform.position = Vector2.MoveTowards (transform.position, playerPos.position, speed * Time.deltaTime);
-        if (playerPos.position.x < transform.position.x && FlagToTurn)
+        transform.position = Vector2.MoveTowards (transform.position, playerPos.position,
+            speed * Time.deltaTime);
+
+        if (SpritePointingToTheRight)
         {
-            Flip ();
-            FlagToTurn = false;
+            if (playerPos.position.x < transform.position.x && FlagToTurn)
+            {
+                Flip ();
+                FlagToTurn = false;
+            }
+            else if (playerPos.position.x > transform.position.x && !FlagToTurn)
+            {
+                Flip ();
+                FlagToTurn = true;
+            }
         }
-        else if (playerPos.position.x > transform.position.x && !FlagToTurn)
+        else
         {
-            Flip ();
-            FlagToTurn = true;
+            if (playerPos.position.x > transform.position.x && FlagToTurn)
+            {
+                Flip ();
+                FlagToTurn = false;
+            }
+            else if (playerPos.position.x < transform.position.x && !FlagToTurn)
+            {
+                Flip ();
+                FlagToTurn = true;
+            }
         }
+
     }
     private void Flip () // разворот спрайта по y
     {
