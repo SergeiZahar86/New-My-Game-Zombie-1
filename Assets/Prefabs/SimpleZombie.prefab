@@ -299,6 +299,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44021b0fb195ce24c9b2d2e04e04b55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTimeBtwAttack: 0.5
+  damage: 1
+  startStopTime: 0.1
+  normalSpeed: 2
   speed: 2
   health: 10
   SpritePointingToTheRight: 0

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float moveSpeed;
+    public int health; // здоровье
     private Vector2 moveDirection;  // считывает в какую сторону мы движемся
     private Transform handsTransform; // Transform для рук
     private Transform legsTransform; // Transform для ног
@@ -133,4 +134,28 @@ public class Player : MonoBehaviour
             runningAnimation.SetBool ("isRunning", true);
         }
     }
+
+
+    private void OnTriggerEnter2D (Collider2D collision)
+    {
+        if(collision.tag == "Enemy")
+        {
+            health--;
+            if(health == 0)
+            {
+                Destroy (gameObject);
+            }
+        }
+    }
+
+
+    /*
+    public void TakeDamage (int damage)
+    {
+        //stopTime = startStopTime;
+        // Instatiete(deathEffect, transform.position, Quaternion.identity);
+        health -= damage;
+    }
+    */
+
 }
