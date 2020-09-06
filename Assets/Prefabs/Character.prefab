@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8851525450592154611}
-  moveSpeed: 4
+  moveSpeed: 6
   Bullet: {fileID: 7376781094937209307, guid: 185dd147f2a304347bdc266b975b6727, type: 3}
   shotPoint: {fileID: 8851525449719140967}
   startTimeBtwShots: 0.1

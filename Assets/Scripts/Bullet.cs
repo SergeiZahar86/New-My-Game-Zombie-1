@@ -18,9 +18,10 @@ public class Bullet : MonoBehaviour
         // то мы наносим этому врагу урон
         if (hitInfo.collider != null && hitInfo.collider.CompareTag ("Enemy"))
         {
-            hitInfo.collider.GetComponent<EnemyBigZombie> ();
-            Destroy (gameObject, lifetime);
+            hitInfo.collider.GetComponent<Enemy> ().TakeDamage(damage);
+            Destroy (gameObject);
         }
+        Destroy (gameObject, lifetime);
         // направление полёта
         transform.Translate (Vector2.right * speed * Time.deltaTime);
     }

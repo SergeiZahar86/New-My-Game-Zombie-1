@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  health: 50
   SpritePointingToTheRight: 0
 --- !u!212 &2644020272432877446
 SpriteRenderer:

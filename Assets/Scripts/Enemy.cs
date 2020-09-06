@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed;
+    public int health;
     private Transform playerPos;
     private bool FlagToTurn = true; // флаг для поворота
     public bool SpritePointingToTheRight; // true - если спрайт изначально направлен вправо
@@ -16,9 +17,9 @@ public class Enemy : MonoBehaviour
     private void Update ()
     {
         transform.position = Vector2.MoveTowards (transform.position, playerPos.position,
-            speed * Time.deltaTime);
+            speed * Time.deltaTime); // преследование игрока
 
-        if (SpritePointingToTheRight)
+        if (SpritePointingToTheRight) // разворот спрайта
         {
             if (playerPos.position.x < transform.position.x && FlagToTurn)
             {
@@ -44,7 +45,14 @@ public class Enemy : MonoBehaviour
                 FlagToTurn = true;
             }
         }
-
+        if(health <= 0) // получение урона
+        {
+            Destroy (gameObject);
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
     private void Flip () // разворот спрайта по y
     {
