@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7271320760770192966}
   - component: {fileID: 4493835325141908739}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 256
+  lifetime: 1
 --- !u!114 &4493835325141908739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +110,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7376781094937209307}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee44a682af7e15c4ea7b0d8ab7aed6b6, type: 3}
   m_Name: 

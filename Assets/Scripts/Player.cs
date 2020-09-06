@@ -34,9 +34,9 @@ public class Player : MonoBehaviour
     private void Update ()
     {
         MirroringBodyPartsAndAiming (handsTransform, true); // метод слежения рук и головы за мышью
-        MirroringBodyPartsAndAiming (headTransform, true); // головы
-        MirroringBodyPartsAndAiming (bodyTransform, false); // тела
-        MirroringBodyPartsAndAiming (legsTransform, false); // ног
+        MirroringBodyPartsAndAiming (headTransform, true); // ... головы
+        MirroringBodyPartsAndAiming (bodyTransform, false); // ... тела
+        MirroringBodyPartsAndAiming (legsTransform, false); // ... ног
         RunningAnimation (); // анимация бега
         HandsAnimation (); // анимация стрельбы
         Shooting (); //стрельба префабами
