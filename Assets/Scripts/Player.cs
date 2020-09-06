@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,9 +33,10 @@ public class Player : MonoBehaviour
     }
     private void Update ()
     {
-        HandleAiming (); // метод слежения рук и головы за мышью
-        ReversalOfFixedBodyParts (bodyTransform); //разворот спрайта тела
-        ReversalOfFixedBodyParts (legsTransform); //разворот спрайта ног
+        MirroringBodyPartsAndAiming (handsTransform, true); // метод слежения рук и головы за мышью
+        MirroringBodyPartsAndAiming (headTransform, true); // головы
+        MirroringBodyPartsAndAiming (bodyTransform, false); // тела
+        MirroringBodyPartsAndAiming (legsTransform, false); // ног
         RunningAnimation (); // анимация бега
         HandsAnimation (); // анимация стрельбы
         Shooting (); //стрельба префабами
@@ -53,28 +53,49 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2 (moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
 
-    private void HandleAiming () // метод слежения рук и головы за мышью
+    private void MirroringBodyPartsAndAiming (Transform bodyParts, bool NeedForRotationAround_Z) /* метод 
+     разворота спрайтов влево и вправо за мышью. bool NeedForRotationAround_Z - необходимость вращения 
+     спрайта за мышью вокруг оси Z. */
     {
         Vector3 mousePosition = GetMouseWorldPosition (Input.mousePosition, Camera.main);
-
         Vector3 handsDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2 (handsDirection.y, handsDirection.x) * Mathf.Rad2Deg;
-        handsTransform.eulerAngles = new Vector3 (0, 0, angle);
-        headTransform.eulerAngles = new Vector3 (0, 0, angle);
 
-        /////////Разворот спрайтов рук и головы вокруг оси y //////////
-        Vector3 handsLocalScale = Vector3.one;
-        if (angle > 90 || angle < -90)
+        Vector3 LocalScale = Vector3.one;
+        if (NeedForRotationAround_Z)
         {
-            handsLocalScale.y = -1f;
-        } else
-        {
-            handsLocalScale.y = +1f;
+            bodyParts.eulerAngles = new Vector3 (0, 0, angle); // слежение за мышью вокруг z
+            if (angle > 90 || angle < -90)
+            {
+                LocalScale.y = -1f;
+            }
+            else
+            {
+                LocalScale.y = +1f;
+            }
+            bodyParts.localScale = LocalScale;
         }
-        handsTransform.localScale = handsLocalScale;
-        headTransform.localScale = handsLocalScale;
+        else
+        {
+            if (angle > 90 || angle < -90)
+            {
+                LocalScale.x = -1f;
+            }
+            else
+            {
+                LocalScale.x = +1f;
+            }
+            bodyParts.localScale = LocalScale;
+        }
     }
-    
+    private Vector3 GetMouseWorldPosition (Vector3 screenPosition, Camera worldCamera) /* метод 
+    определения положения курсора мыши в мировом пространстве. */
+    {
+        Vector3 worldPosition = worldCamera.ScreenToWorldPoint (screenPosition);
+        //return worldPosition;
+        worldPosition.z = 0f;
+        return worldPosition;
+    }
     private void Shooting () //стрельба префабами
     {
         if (timeBtwShots <= 0) // если оставшееся время до выстрела истекло
@@ -111,32 +132,5 @@ public class Player : MonoBehaviour
         {
             runningAnimation.SetBool ("isRunning", true);
         }
-    }
-
-    private void ReversalOfFixedBodyParts (Transform bodyParts) //разворот невращающихся частей тела
-    {
-        Vector3 mousePosition = GetMouseWorldPosition (Input.mousePosition, Camera.main);
-
-        Vector3 handsDirection = (mousePosition - transform.position).normalized;
-        float angle = Mathf.Atan2 (handsDirection.y, handsDirection.x) * Mathf.Rad2Deg;
-
-        Vector3 bodyLocalScale = Vector3.one;
-        if (angle > 90 || angle < -90)
-        {
-            bodyLocalScale.x = -1f;
-        }
-        else
-        {
-            bodyLocalScale.x = +1f;
-        }
-        bodyParts.localScale = bodyLocalScale;
-    }
-    private Vector3 GetMouseWorldPosition (Vector3 screenPosition, Camera worldCamera)
-    // метод определения положения курсора мыши в мировом пространстве
-    {
-        Vector3 worldPosition = worldCamera.ScreenToWorldPoint (screenPosition);
-        //return worldPosition;
-        worldPosition.z = 0f;
-        return worldPosition;
     }
 }
