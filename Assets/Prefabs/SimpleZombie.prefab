@@ -305,7 +305,7 @@ MonoBehaviour:
   normalSpeed: 2
   speed: 2
   health: 10
-  SpritePointingToTheRight: 0
+  SpritePointingToTheRight: 1
 --- !u!212 &3450851930808743795
 SpriteRenderer:
   m_ObjectHideFlags: 0
