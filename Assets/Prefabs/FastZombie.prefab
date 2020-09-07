@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 3697115086467869400}
   - component: {fileID: 3697115086467869401}
   - component: {fileID: 3697115086467869397}
+  - component: {fileID: 1469788685769967651}
   m_Layer: 8
   m_Name: FastZombie
   m_TagString: Enemy
@@ -298,7 +299,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44021b0fb195ce24c9b2d2e04e04b55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  startTimeBtwAttack: 0.5
+  damage: 1
+  startStopTime: 0.1
+  normalSpeed: 3
+  speed: 3
+  health: 10
+  SpritePointingToTheRight: 0
 --- !u!212 &3697115086467869400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -390,6 +397,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &1469788685769967651
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3697115086467869402}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0059044957, y: -0.20906088}
+  m_Size: {x: 0.23784292, y: 0.9409433}
+  m_Direction: 0
 --- !u!1 &3697115086617160914
 GameObject:
   m_ObjectHideFlags: 0

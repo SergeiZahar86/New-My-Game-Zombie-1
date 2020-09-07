@@ -422,10 +422,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2644020272432877447}
-  - component: {fileID: 2644020272432877451}
+  - component: {fileID: 3304927767389898005}
   - component: {fileID: 2644020272432877446}
   - component: {fileID: 2644020272432877444}
   - component: {fileID: 2644020272432877445}
+  - component: {fileID: 3201057669053429069}
+  - component: {fileID: 8704301692382783081}
   m_Layer: 8
   m_Name: BigZombie
   m_TagString: Enemy
@@ -450,7 +452,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.161}
---- !u!114 &2644020272432877451
+--- !u!114 &3304927767389898005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -459,10 +461,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2644020272432877450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63d766a72ae93414bb532925b0e216d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 44021b0fb195ce24c9b2d2e04e04b55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTimeBtwAttack: 0.5
+  damage: 1
+  startStopTime: 0.1
+  normalSpeed: 1
   speed: 1
+  health: 50
+  SpritePointingToTheRight: 0
+  effect: {fileID: 447797755852025153, guid: 50cea00f4b9c8b546bfb1ce5b31df3e5, type: 3}
 --- !u!212 &2644020272432877446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -554,6 +563,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &3201057669053429069
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2644020272432877450}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.35670504, y: 1.0717285}
+  m_Size: {x: 2.988174, y: 7.1355267}
+  m_Direction: 0
+--- !u!58 &8704301692382783081
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2644020272432877450}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.0265675, y: 0.7750158}
+  serializedVersion: 2
+  m_Radius: 1.4922395
 --- !u!1 &2644020272978965320
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2195815755338875824}
   - component: {fileID: 3734034674676879632}
   - component: {fileID: -7271320760770192966}
-  - component: {fileID: 4493835325141908739}
+  - component: {fileID: 5304441598278635621}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 0066680f6214253479c82491fa637dd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -96,22 +96,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bee081d391bcc44283e77bb0d771d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
+  speed: 110
   distance: 2
   damage: 1
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &4493835325141908739
-MonoBehaviour:
+  lifetime: 1
+--- !u!210 &5304441598278635621
+SortingGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7376781094937209307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee44a682af7e15c4ea7b0d8ab7aed6b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 1
+  m_Enabled: 0
+  m_SortingLayerID: 246577719
+  m_SortingLayer: 1
+  m_SortingOrder: 0

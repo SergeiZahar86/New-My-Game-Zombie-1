@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 3450851930808743795}
   - component: {fileID: 3450851930808743792}
   - component: {fileID: 3450851930808743793}
+  - component: {fileID: 2292442353493931431}
   m_Layer: 8
   m_Name: SimpleZombie
   m_TagString: Enemy
@@ -298,7 +299,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44021b0fb195ce24c9b2d2e04e04b55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.8
+  startTimeBtwAttack: 0.5
+  damage: 1
+  startStopTime: 0.1
+  normalSpeed: 2
+  speed: 2
+  health: 10
+  SpritePointingToTheRight: 0
 --- !u!212 &3450851930808743795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -390,6 +397,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &2292442353493931431
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3450851930808743798}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.014838457, y: -0.18799216}
+  m_Size: {x: 0.23785532, y: 0.9455813}
+  m_Direction: 0
 --- !u!1 &3450851930890810733
 GameObject:
   m_ObjectHideFlags: 0
