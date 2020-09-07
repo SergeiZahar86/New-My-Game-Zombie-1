@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     }
     private void Update ()
     {
+        transform.position = new Vector2 (Mathf.Clamp (transform.position.x, -13.5f, 13.5f),
+            Mathf.Clamp (transform.position.y, -9.5f, 9.5f));
         MirroringBodyPartsAndAiming (handsTransform, true); // метод слежения рук и головы за мышью
         MirroringBodyPartsAndAiming (headTransform, true); // ... головы
         MirroringBodyPartsAndAiming (bodyTransform, false); // ... тела
@@ -53,7 +55,6 @@ public class Player : MonoBehaviour
             Input.GetAxisRaw ("Vertical")).normalized;
         rb.velocity = new Vector2 (moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
-
     private void MirroringBodyPartsAndAiming (Transform bodyParts, bool NeedForRotationAround_Z) /* метод 
      разворота спрайтов влево и вправо за мышью. bool NeedForRotationAround_Z - необходимость вращения 
      спрайта за мышью вокруг оси Z. */
@@ -134,9 +135,7 @@ public class Player : MonoBehaviour
             runningAnimation.SetBool ("isRunning", true);
         }
     }
-
-
-    private void OnTriggerEnter2D (Collider2D collision)
+    private void OnTriggerEnter2D (Collider2D collision) /* получение урона и смерть */
     {
         if(collision.tag == "Enemy")
         {
@@ -147,15 +146,4 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-
-    /*
-    public void TakeDamage (int damage)
-    {
-        //stopTime = startStopTime;
-        // Instatiete(deathEffect, transform.position, Quaternion.identity);
-        health -= damage;
-    }
-    */
-
 }

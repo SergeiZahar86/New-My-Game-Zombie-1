@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8851525450592154611}
   moveSpeed: 6
+  health: 0
   Bullet: {fileID: 7376781094937209307, guid: 185dd147f2a304347bdc266b975b6727, type: 3}
   shotPoint: {fileID: 8851525449719140967}
   startTimeBtwShots: 0.1
@@ -298,7 +299,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.029624745, y: -0.76300925}

@@ -471,6 +471,7 @@ MonoBehaviour:
   speed: 1
   health: 50
   SpritePointingToTheRight: 0
+  effect: {fileID: 447797755852025153, guid: 50cea00f4b9c8b546bfb1ce5b31df3e5, type: 3}
 --- !u!212 &2644020272432877446
 SpriteRenderer:
   m_ObjectHideFlags: 0
