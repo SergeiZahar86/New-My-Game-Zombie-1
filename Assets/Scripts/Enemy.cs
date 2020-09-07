@@ -88,6 +88,7 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0) 
         {
+            ScoreManager.Instance.IncreaseScore();
             Destroy (gameObject);
         }
     }
