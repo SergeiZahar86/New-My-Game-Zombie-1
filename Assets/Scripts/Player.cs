@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -142,7 +143,8 @@ public class Player : MonoBehaviour
             health--;
             if(health == 0)
             {
-                Destroy (gameObject);
+                //Destroy (gameObject);
+                SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
             }
         }
     }
