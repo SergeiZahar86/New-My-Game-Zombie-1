@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     private void Update ()
     {
         transform.position = new Vector2 (Mathf.Clamp (transform.position.x, -13.5f, 13.5f),
-            Mathf.Clamp (transform.position.y, -9.5f, 9.5f));
+            Mathf.Clamp (transform.position.y, -9.5f, 9.5f)); // ограничение движения по карте
         MirroringBodyPartsAndAiming (handsTransform, true); // метод слежения рук и головы за мышью
         MirroringBodyPartsAndAiming (headTransform, true); // ... головы
         MirroringBodyPartsAndAiming (bodyTransform, false); // ... тела

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Transform playerPos;
 
-    // Update is called once per frame
+    private void Awake ()
+    {
+        playerPos = GameObject.FindGameObjectWithTag ("Player").transform;
+    }
     void Update()
     {
-        
+        transform.position = new Vector3 (playerPos.position.x, playerPos.position.y,
+            transform.position.z); // слежение за игроком
+        transform.position = new Vector3 (Mathf.Clamp (transform.position.x, -7.5f, 7.5f),
+            Mathf.Clamp (transform.position.y, -5.4f, 5.4f), transform.position.z); // ограничение движения по карте
     }
 }
