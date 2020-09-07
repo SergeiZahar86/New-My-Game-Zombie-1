@@ -137,9 +137,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8851525448856284918}
+  - component: {fileID: 8851525448856284912}
   - component: {fileID: 8851525448856284913}
   - component: {fileID: 8851525450592154611}
-  - component: {fileID: 8851525448856284912}
   - component: {fileID: 8851525448856284915}
   - component: {fileID: 8851525448856284919}
   - component: {fileID: 5308981525371766746}
@@ -169,6 +169,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8851525448856284912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8851525448856284925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd572fe283c0d5449a78f080f7a860a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8851525450592154611}
+  moveSpeed: 6
+  health: 0
+  Bullet: {fileID: 7376781094937209307, guid: 185dd147f2a304347bdc266b975b6727, type: 3}
+  shotPoint: {fileID: 8851525449719140967}
+  startTimeBtwShots: 0.1
 --- !u!212 &8851525448856284913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -241,24 +259,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8851525448856284912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8851525448856284925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dd572fe283c0d5449a78f080f7a860a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 8851525450592154611}
-  moveSpeed: 6
-  health: 0
-  Bullet: {fileID: 7376781094937209307, guid: 185dd147f2a304347bdc266b975b6727, type: 3}
-  shotPoint: {fileID: 8851525449719140967}
-  startTimeBtwShots: 0.1
 --- !u!95 &8851525448856284915
 Animator:
   serializedVersion: 3
