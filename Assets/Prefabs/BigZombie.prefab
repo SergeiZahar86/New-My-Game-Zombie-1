@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 2644020272432877445}
   - component: {fileID: 3201057669053429069}
   - component: {fileID: 8704301692382783081}
+  - component: {fileID: 3399036421811758940}
   m_Layer: 8
   m_Name: BigZombie
   m_TagString: Enemy
@@ -471,7 +472,6 @@ MonoBehaviour:
   speed: 1
   health: 50
   SpritePointingToTheRight: 0
-  effect: {fileID: 447797755852025153, guid: 50cea00f4b9c8b546bfb1ce5b31df3e5, type: 3}
 --- !u!212 &2644020272432877446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -595,6 +595,22 @@ CircleCollider2D:
   m_Offset: {x: -2.0265675, y: 0.7750158}
   serializedVersion: 2
   m_Radius: 1.4922395
+--- !u!70 &3399036421811758940
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2644020272432877450}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 2.8421736, y: 1.2771649}
+  m_Size: {x: 2.548518, y: 4.274055}
+  m_Direction: 0
 --- !u!1 &2644020272978965320
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public Text scoreText;
     private int score;
+    public Text gameOverScore;
 
     static ScoreManager instance;
 
@@ -21,5 +22,6 @@ public class ScoreManager : MonoBehaviour
     {
         score += 1;
         scoreText.text = "Score: " + score.ToString ();
+        gameOverScore.text = "Score: " + score.ToString ();
     }
 }

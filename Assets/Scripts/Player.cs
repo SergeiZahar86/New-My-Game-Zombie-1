@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -144,7 +145,9 @@ public class Player : MonoBehaviour
             if(health == 0)
             {
                 //Destroy (gameObject);
-                SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+                //SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+                GameOverManager.Instance.GameOver (); // вызвать панель
+                //Destroy (gameObject);
             }
         }
     }

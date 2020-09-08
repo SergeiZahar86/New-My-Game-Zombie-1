@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Enemy : MonoBehaviour
     private Transform playerPos;
     private bool FlagToTurn = true; // флаг для поворота
     public bool SpritePointingToTheRight; // true - если спрайт изначально направлен вправо
+
+    //public Text gameOverScore;
     private void Start () 
     {
         normalSpeed = speed;
@@ -31,6 +34,8 @@ public class Enemy : MonoBehaviour
         StopAfterDamage (); // метод для остановки после получения урона
         EnemyTurn (); // разворот врага по оси Y
         EnemyDeath (); // смерть врага
+
+        //gameOverScore.text = "Score: " + 
     }
     private void StopAfterDamage () // метод для остановки после получения урона
     {
@@ -88,7 +93,7 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0) 
         {
-            ScoreManager.Instance.IncreaseScore(); // перезапуск игры
+            ScoreManager.Instance.IncreaseScore(); // добавить очки
             Destroy (gameObject);
         }
     }
