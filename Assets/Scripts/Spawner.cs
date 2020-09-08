@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
         if (coolDown <= 0)
         {
             a ++;
-            if ((a % 10 == 0) && (time >= 0.5))
+            if ((a % 10 == 0) && (time > 0.5))
             {
                 time -= 0.1f;
             }

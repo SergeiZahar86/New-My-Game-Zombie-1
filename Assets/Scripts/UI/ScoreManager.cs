@@ -17,12 +17,6 @@ public class ScoreManager : MonoBehaviour
             return ScoreManager.instance;
         }
     }
-
-    void Start()
-    {
-        
-    }
-
     public void IncreaseScore()
     {
         score += 1;

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float moveSpeed;
+    public float moveSpeed; // скорость движения
     public int health; // здоровье
     private Vector2 moveDirection;  // считывает в какую сторону мы движемся
     private Transform handsTransform; // Transform для рук

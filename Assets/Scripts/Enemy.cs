@@ -8,9 +8,9 @@ public class Enemy : MonoBehaviour
     public int damage; // урон который он наносит
     public float startStopTime; // время остановки после получения урона
     private float stopTime; // оставшееся время до возобновления движение врага после получения урона
-    public float normalSpeed;
-    public float speed;
-    public int health;
+    public float normalSpeed; // обычная скорость
+    public float speed; // переменная для остановки
+    public int health;// здоровье
     private Transform playerPos;
     private bool FlagToTurn = true; // флаг для поворота
     public bool SpritePointingToTheRight; // true - если спрайт изначально направлен вправо
@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0) 
         {
-            ScoreManager.Instance.IncreaseScore();
+            ScoreManager.Instance.IncreaseScore(); // перезапуск игры
             Destroy (gameObject);
         }
     }
