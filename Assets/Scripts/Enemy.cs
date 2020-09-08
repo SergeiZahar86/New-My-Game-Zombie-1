@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float startTimeBtwAttack; // оставшееся время до выстрела
@@ -18,7 +15,6 @@ public class Enemy : MonoBehaviour
     {
         normalSpeed = speed;
     }
-
     private void Awake ()
     {
         playerPos = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -27,7 +23,6 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards (transform.position, playerPos.position,
             speed * Time.deltaTime); // преследование игрока
-
         StopAfterDamage (); // метод для остановки после получения урона
         EnemyTurn (); // разворот врага по оси Y
         EnemyDeath (); // смерть врага
@@ -88,7 +83,7 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0) 
         {
-            ScoreManager.Instance.IncreaseScore(); // перезапуск игры
+            ScoreManager.Instance.IncreaseScore(); // добавить очки
             Destroy (gameObject);
         }
     }

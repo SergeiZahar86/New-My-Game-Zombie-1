@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTimeBtwAttack: 0.5
   damage: 1
-  startStopTime: 0.1
+  startStopTime: 0.5
   normalSpeed: 2
   speed: 2
   health: 10
@@ -410,8 +410,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.014838457, y: -0.18799216}
-  m_Size: {x: 0.23785532, y: 0.9455813}
+  m_Offset: {x: 0.03679174, y: -0.18799216}
+  m_Size: {x: 0.39743948, y: 0.9455813}
   m_Direction: 0
 --- !u!1 &3450851930890810733
 GameObject:
