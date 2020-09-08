@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float moveSpeed;
+    public float moveSpeed; // скорость движения
     public int health; // здоровье
     private Vector2 moveDirection;  // считывает в какую сторону мы движемся
     private Transform handsTransform; // Transform для рук
@@ -142,7 +143,8 @@ public class Player : MonoBehaviour
             health--;
             if(health == 0)
             {
-                Destroy (gameObject);
+                //Destroy (gameObject);
+                SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
             }
         }
     }
