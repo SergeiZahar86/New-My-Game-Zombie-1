@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTimeBtwAttack: 0.5
   damage: 1
-  startStopTime: 0.1
+  startStopTime: 0.5
   normalSpeed: 3
   speed: 3
   health: 10

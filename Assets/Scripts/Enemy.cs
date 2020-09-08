@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
+﻿using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float startTimeBtwAttack; // оставшееся время до выстрела
@@ -15,13 +11,10 @@ public class Enemy : MonoBehaviour
     private Transform playerPos;
     private bool FlagToTurn = true; // флаг для поворота
     public bool SpritePointingToTheRight; // true - если спрайт изначально направлен вправо
-
-    //public Text gameOverScore;
     private void Start () 
     {
         normalSpeed = speed;
     }
-
     private void Awake ()
     {
         playerPos = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -30,12 +23,9 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards (transform.position, playerPos.position,
             speed * Time.deltaTime); // преследование игрока
-
         StopAfterDamage (); // метод для остановки после получения урона
         EnemyTurn (); // разворот врага по оси Y
         EnemyDeath (); // смерть врага
-
-        //gameOverScore.text = "Score: " + 
     }
     private void StopAfterDamage () // метод для остановки после получения урона
     {

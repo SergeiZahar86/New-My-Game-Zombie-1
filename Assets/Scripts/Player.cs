@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
+﻿using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
@@ -17,6 +11,7 @@ public class Player : MonoBehaviour
     private Transform bodyTransform; // Transform для тела
     private Animator handsAnimation; // анимация рук
     private Animator runningAnimation; // анимация бега
+
     //для стрельбы
     public GameObject Bullet; // создаём пулю
     public Transform shotPoint; // место откуда будет лететь пуля
@@ -46,7 +41,6 @@ public class Player : MonoBehaviour
         HandsAnimation (); // анимация стрельбы
         Shooting (); //стрельба префабами
     }
-
     private void FixedUpdate ()
     {
         Move (); // метод перемещение героя
@@ -64,7 +58,6 @@ public class Player : MonoBehaviour
         Vector3 mousePosition = GetMouseWorldPosition (Input.mousePosition, Camera.main);
         Vector3 handsDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2 (handsDirection.y, handsDirection.x) * Mathf.Rad2Deg;
-
         Vector3 LocalScale = Vector3.one;
         if (NeedForRotationAround_Z)
         {
@@ -144,10 +137,7 @@ public class Player : MonoBehaviour
             health--;
             if(health == 0)
             {
-                //Destroy (gameObject);
-                //SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
                 GameOverManager.Instance.GameOver (); // вызвать панель
-                //Destroy (gameObject);
             }
         }
     }
